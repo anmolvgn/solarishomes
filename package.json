@@ -1,0 +1,32 @@
+{
+  "name": "solarishomes",
+  "version": "1.0.0",
+  "description": "Residential solar power analysis app.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anmolvgn/solarishomes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anmolvgn/solarishomes/issues"
+  },
+  "homepage": "https://github.com/anmolvgn/solarishomes#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "chart.js": "^2.7.1",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "handlebars": "^4.0.11",
+    "materialize-css": "^0.100.2",
+    "mysql": "^2.15.0",
+    "mysql2": "^1.4.2",
+    "nodemon": "^1.12.1",
+    "passport": "^0.4.0",
+    "sequelize": "^4.20.1"
+  }
+}
