@@ -20,13 +20,24 @@
         {{!-- NAVBAR/HEADER --}}
     <div class="row">
         <div class="col md12 navbar"> NAVBAR </div>
+        <button id="login">login</button>
     </div>
     <div class="container">
   
     {{!-- Body content --}}
         {{{body}}}
     </div>
+{{!-- <script>
     
+$(document).ready(function(){
+     $('#login').on('click',function(){
+            $.post('/login',function(data,status){
+                console.log('login pressed');
+            })
+        })
+})
+</script> --}}
+
     {{!-- FOOTER --}}
     <div class="footer">FOOTER</div>
 </body>

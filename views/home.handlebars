@@ -76,6 +76,11 @@ var myChart = new Chart(ctx, {
         }
     }
 });
+ $('#login').on('click',function(){
+            $.post('/login',function(data,status){
+                console.log('login pressed');
+            })
+        })
     });
 </script>
 

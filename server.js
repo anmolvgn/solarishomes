@@ -1,6 +1,9 @@
 var express = require('express');
 var exphbs  = require('express-handlebars');
- 
+var login = require('./controllers/login.js')
+var passport = require('passport');
+
+
 var app = express();
 var port = process.env.PORT || 3000;
 
