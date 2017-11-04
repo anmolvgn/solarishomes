@@ -3,7 +3,7 @@
     "username": "root",
     "password": "",
     "database": "solar_db",
-    "host": "127.0.0.1",
+    "host": "",
     "dialect": "mysql"
   },
   "test": {

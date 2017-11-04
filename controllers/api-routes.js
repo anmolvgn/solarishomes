@@ -24,15 +24,29 @@ var router = Router();
         var key = 'qmVVrtllpIclFnaKUH3KayluRYB1bjnvZFOtgUAu'
        
         var query = 'https://developer.nrel.gov/api/pvwatts/v5.json?api_key='+key+'&address='+address+'&system_capacity='+system_capacity+'&azimuth='+azimuth+'&tilt='+tilt+'&array_type='+array_type+'&module_type='+module_type+'&losses='+losses
-        // console.log(query);
+        console.log(query);
         // request for Solar Radiation data//
+        query = 'https://developer.nrel.gov/api/pvwatts/v5.json?api_key=qmVVrtllpIclFnaKUH3KayluRYB1bjnvZFOtgUAu&address=Broomfield,Colorado&system_capacity=4&azimuth=145&tilt=44&array_type=2&module_type=1&losses=11'
         request(query, (err, res, body) => {
             if (err) { return console.log(err); }
             // ac_monthly = data.ac_monthly[0];
             body = JSON.parse(body);
-            ac_monthly = body.outputs.ac_monthly;
-            monthly = {ac_monthly};
-            console.log(monthly);
+                ac_monthly = body.outputs.ac_monthly;
+                var cals = [`jan`,`feb`,`mar`,`apr`,`may`,`jun` ,`jul`,`aug`,`sep`,`oct`,`nov`,`dec`];
+                console.log(ac_monthly);
+                var objData = {};
+                for(i = 0; i < ac_monthly.length; i++) {
+                   console.log(cals[i]);
+                   //key: valu definition es6
+                   objData[cals[i]] = Math.round(ac_monthly[i]);
+                
+                }
+        // objData = {'jan': 123.22},
+            console.log(objData);
+                db.SolarData.create(objData).then(function(dbAuthor){
+                    res.json(dbAuthor);
+                })
+            
             var solRad = [];
             for(i = 0; i < ac_monthly.length; i++){
                 value = Math.round(ac_monthly[i]);

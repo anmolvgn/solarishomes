@@ -4,6 +4,7 @@
     <div class="row">
         {{!-- action="/solarData" method="GET" --}}
         <form action="/solarData" method="post">
+            <div class="form-content">
                 Address:<input name='address' type="text">
                 City:<input name='city' type="text">
                 State:<input name='state' type="text">
@@ -11,65 +12,99 @@
                 azimuth:<input name='azimuth' type="text">
                 arrray Type:<input name='array_type' type="text">
                 module Type:<input name='module_type' type="text">
-                system Capacity:<input name='system_capacity' type="text">
+                system Capacity:<input name='system_capacity'type="text">
                 tilt:<input name='tilt' type="text"> 
-             <button name="calcSolar" class="right">Calculate</button>
+                <button name="calcSolar" class="right">Calculate</button>
+            </div>    
         </form>
     </div>
 </div>
 {{!-- Results table/charts --}}
 <div class="solarData">
+
     {{#each sunData }}
           {{sunData}}         
     {{/each}}
 </div>
 {{!-- //testChart// --}}
 <div class="row">
-    <div class="col m4">
-        <canvas id="myChart" width="400" height="400"></canvas> 
+    <div class="col m7">
+        <canvas id="myChart" width="700" height="400"></canvas> 
     </div>
+    <span class="col m4">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempor nec feugiat nisl pretium fusce id velit ut. Vestibulum lectus mauris ultrices eros in.
+        </p>
+    </span>
 </div>
-
+<div class="row">
+    <div class="col m7">
+        <canvas id="costSavings" width="700" height="400"></canvas> 
+    </div>
+     <span class="col m4">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada nunc vel risus commodo viverra maecenas accumsan lacus vel. Eget dolor morbi non arcu risus quis varius quam quisque.
+        </p>
+    </span>
+</div>
 {{!-- ////testChart --}}
-<script>
+<script >
     $(document).ready(function(){
+
+Handlebars.registerHelper('list', function(items, options) {
+  var out = "<ul>";
+
+  for(var i=0, l=items.length; i<l; i++) {
+    out = out + "<li>" + options.fn(items[i]) + "</li>";
+  }
+
+  return out + "</ul>";
+});
+
     var sunData = $("#sunData");
     console.log(sunData);    
     var sunChart = $("#myChart");
     var myChart = new Chart(sunChart, {
-        type: 'bar',
+        type: 'line-chart',
         data: {
             labels: ["Jan", "Feb", "April", "March", "May", "June","Jul", "Aug", "Sept", "Oct", "Nov", "Dec"],
             datasets: [{
                 label: 'Kwh AC Output',
                 data: [sunData],
+                borderColor:rgba(255, 99, 132, 0.2),
+                borderWidth: 1
+            }]
+        },
+        options: {
+            title: {
+                display: true
+            },
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Kwh'
+                    },
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });    
+    })
+    var costChart = $("#costSavings");
+    var myChart = new Chart(costChart, {
+        type: 'bar',
+        data: {
+            labels: ["Jan", "Feb", "April", "March", "May", "June","Jul", "Aug", "Sept", "Oct", "Nov", "Dec"],
+            datasets: [{
+                label: 'Total Cost Savings',
+                data: [costData],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                     'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    'rgba(255, 99, 132, 0.2)'
                 ],
                 borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    'rgba(255,99,132,1)'
                 ],
                 borderWidth: 1
             }]
