@@ -25,4 +25,10 @@ db.sequelize.sync({}).then(function(){
     if(err) throw err;
     console.log('Listening on port: ' + port);
 }); 
-})
+});
+
+app.post('/login',
+    passport.authenticate('local'),
+    function (req, res) {
+        res.redirect('/users/' + req.user.username);
+});
