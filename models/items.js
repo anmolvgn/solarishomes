@@ -3,7 +3,8 @@ module.exports = function(sequelize, DataTypes){
         ItemName: DataTypes.STRING,
         ItemDescription: DataTypes.STRING,
         ItemCost: DataTypes.FLOAT,
-        ItemStock: DataTypes.INTEGER
+        ItemStock: DataTypes.INTEGER,
+        ItemQuant: DataTypes.INTEGER
     });
 
     Items.associate = function(models) {
