@@ -1,23 +1,28 @@
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
-
 {{!-- User Input Form --}}
 <div class="row">
-    <div class="col m4">
-        <form>
-            input1:<input type="text">
-            input2:<input type="text">
-            input3:<input type="text">
-            <button>Calculate</button>
+
+    <div class="row">
+        {{!-- action="/solarData" method="GET" --}}
+        <form action="/solarData" method="post">
+                Address:<input name='address' type="text">
+                City:<input name='city' type="text">
+                State:<input name='state' type="text">
+                losses:<input name='losses' type="text">
+                azimuth:<input name='azimuth' type="text">
+                arrray Type:<input name='array_type' type="text">
+                module Type:<input name='module_type' type="text">
+                system Capacity:<input name='system_capacity' type="text">
+                tilt:<input name='tilt' type="text"> 
+             <button name="calcSolar" class="right">Calculate</button>
         </form>
     </div>
 </div>
 {{!-- Results table/charts --}}
-<table> 
-    <thead>
-        <td></td>
-    </thead>
-</table>
-
+<div class="solarData">
+    {{#each sunData }}
+          {{sunData}}         
+    {{/each}}
+</div>
 {{!-- //testChart// --}}
 <div class="row">
     <div class="col m4">
@@ -25,62 +30,61 @@
     </div>
 </div>
 
-
-
 {{!-- ////testChart --}}
-
-{{!-- some client side js --}}
 <script>
     $(document).ready(function(){
-
-//even listener / on click /form submit
-
-
-///
-
-
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: 'TEST CHART',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
+    var sunData = $("#sunData");
+    console.log(sunData);    
+    var sunChart = $("#myChart");
+    var myChart = new Chart(sunChart, {
+        type: 'bar',
+        data: {
+            labels: ["Jan", "Feb", "April", "March", "May", "June","Jul", "Aug", "Sept", "Oct", "Nov", "Dec"],
+            datasets: [{
+                label: 'Kwh AC Output',
+                data: [sunData],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                     'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
             }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
         }
-    }
-});
- $('#login').on('click',function(){
-            $.post('/login',function(data,status){
-                console.log('login pressed');
-            })
-        })
-    });
-</script>
+    });    
+    })
 
+</script>
+    
