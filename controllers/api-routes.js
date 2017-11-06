@@ -1,84 +1,97 @@
-
 var db = require('../models');
-var passport = require('passport');
+// var express = require('express');
+// var passport = require('passport');
 var Router = require('router');
 var bodyParser = require('body-parser');
 var request = require('request');
-
 
 var router = Router();
     //home route
     router.get('/', function (req, res) {
         res.render('home');
     });
-    //solar data
+    //SOLAR DATA API
     router.post('/solarData',function(req,res){
         console.log(JSON.stringify(req.body));
-        var address = req.body.city + ','+ req.body.state;
-        var losses = parseInt(req.body.losses);
-        var tilt = parseInt(req.body.tilt);
-        var azimuth = parseInt(req.body.azimuth);
-        var module_type = parseInt(req.body.module_type);
-        var array_type = parseInt(req.body.array_type);
-        var system_capacity = parseInt(req.body.system_capacity);
-        var key = 'qmVVrtllpIclFnaKUH3KayluRYB1bjnvZFOtgUAu'
-       
+        var address = req.body.city + ','+ req.body.state, losses = parseInt(req.body.losses), tilt = parseInt(req.body.tilt),azimuth = parseInt(req.body.azimuth), module_type = parseInt(req.body.module_type), array_type = parseInt(req.body.array_type), system_capacity = parseInt(req.body.system_capacity);
+        var key = 'qmVVrtllpIclFnaKUH3KayluRYB1bjnvZFOtgUAu';
         var query = 'https://developer.nrel.gov/api/pvwatts/v5.json?api_key='+key+'&address='+address+'&system_capacity='+system_capacity+'&azimuth='+azimuth+'&tilt='+tilt+'&array_type='+array_type+'&module_type='+module_type+'&losses='+losses
-        console.log(query);
+        // console.log(query);
         // request for Solar Radiation data//
-        query = 'https://developer.nrel.gov/api/pvwatts/v5.json?api_key=qmVVrtllpIclFnaKUH3KayluRYB1bjnvZFOtgUAu&address=Broomfield,Colorado&system_capacity=4&azimuth=145&tilt=44&array_type=2&module_type=1&losses=11'
-        request(query, (err, res, body) => {
-            if (err) { return console.log(err); }
-            // ac_monthly = data.ac_monthly[0];
-            body = JSON.parse(body);
-                ac_monthly = body.outputs.ac_monthly;
-                var cals = [`jan`,`feb`,`mar`,`apr`,`may`,`jun` ,`jul`,`aug`,`sep`,`oct`,`nov`,`dec`];
-                console.log(ac_monthly);
-                var objData = {};
+        query = 'https://developer.nrel.gov/api/pvwatts/v5.json?api_key=qmVVrtllpIclFnaKUH3KayluRYB1bjnvZFOtgUAu&address=Broomfield,Colorado&system_capacity=4&azimuth=180&tilt=0&array_type=2&module_type=1&losses=14'
+            request(query, (err, res, body) => {
+                if (err) { return console.log(err); }
+                    body = JSON.parse(body);
+                    var ac_monthly = body.outputs.ac_monthly;
+                    var cals = [`jan`,`feb`,`mar`,`apr`,`may`,`jun` ,`jul`,`aug`,`sep`,`oct`,`nov`,`dec`];
+                    var objData = {};
                 for(i = 0; i < ac_monthly.length; i++) {
-                   console.log(cals[i]);
-                   //key: valu definition es6
-                   objData[cals[i]] = Math.round(ac_monthly[i]);
-                
+                    key = cals[i].toString();
+                    value = Math.round(ac_monthly[i]).toString();
+                    objData[key] = value;
                 }
-        // objData = {'jan': 123.22},
-            console.log(objData);
-                db.SolarData.create(objData).then(function(dbAuthor){
-                    res.json(dbAuthor);
-                })
-            
-            var solRad = [];
-            for(i = 0; i < ac_monthly.length; i++){
-                value = Math.round(ac_monthly[i]);
-                solRad.push(value);
-            }
-            // console.log(solRad);
-                getSolarData(ac_monthly); 
+                // console.log(objData);
+                    db.SolarData.create(objData).then(function(solarData){ 
+                    })
             });
-            getSolarData = function(ac_monthly){
-                var solarData = {
-                    sunData: ac_monthly
+           
+            db.SolarData.findOne({}).then(function(solarData){
+                // console.log('rirst' + solarData);
+                // console.log(JSON.stringify(solarData));
+            solarData = JSON.parse(JSON.stringify(solarData));
+            console.log(solarData);
+                //  var dataObject = {
+                // sunData: solarData
+                // }
+console.log(req.body.state);
+            db.CostData.findOne({where: {state: 'Colorado'}}).then(function(costData){
+                console.log(JSON.stringify(costData));
+                costData = JSON.parse(JSON.stringify(costData));
+                console.log(costData);
+                 var data = {
+                    sunData: solarData,
+                    avgCostData: costData
                 }
-              res.render('home',solarData);    
-                // res.send();
-            }
+                console.log(data);
+                // res.writeHead(200, { 'Content-Type': 'text/plain' });                
+                res.render('home', data); 
+            }); 
+        // res.render('home', dataObject, costDataObject);     
+            });        
+    }); 
+                ///STOP STOP STOP///
+        //    router.get('/getData',function(req, res){
+         
+                      
+        //    });  
+
+                //     db.SolarData.findOne({}).then(function(solarData){
+                //         solarData = JSON.stringify(solarData);
                         
-    });
+                // console.log('this is solarData' +solarData);
+     // END SOLAR DATA API
 
-    router.get('/loginPage',function(req,res){
-        console.log('testlogin')
-        res.send('login');
+// END GET DATA..//
+
+    router.get('/login',function(req,res){
+        console.log('login get request')
+        res.render('login');
     })
-    // get login
-    // app.post('/login',
-    // passport.authenticate('local', { successRedirect: '/',
-    //                                  failureRedirect: '/login',
-    //                                  failureFlash: true })
-    // );
+    router.post('/authVeriphyIng', function(req, res){
+        var user = body.user;
+        var password = body.password;
+        console.log(user +' ' + password);
+    })
+    router.get('/register',function(req,res){
+        console.log('register get request')
+        res.render('register');
+    })
+    router.get('/products',function(req,res){
+        console.log('products get request')
+        res.render('products');
+    })
+    router.post('/newUserSetup', function(req,res){
+        res.render('/register');
+    })
 
-    // passport.authenticate('local', { failureFlash: 'Invalid username or password.' });
-    // passport.authenticate('local', { successFlash: 'Welcome!' });
-
-
-    
 module.exports = router;
