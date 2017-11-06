@@ -2,7 +2,7 @@ var express = require('express');
 var exphbs  = require('express-handlebars');
 var passport = require('passport');
 var bodyParser = require('body-parser');
-var routes = require('./controllers/api-routes')
+var routes = require('./controllers/api-routes');
 var request = require('request');
 var db = require('./models');
 
@@ -17,6 +17,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+
+app.use(express.static("public"));
 
 app.use('/',routes);
 
