@@ -1,53 +1,53 @@
 module.exports = function(sequelize, DataTypes) {
     var SolarData = sequelize.define("SolarData", {
     
-      Jan: {
-          type: DataTypes.FLOAT,
-          allowNull: false
+    jan: {
+          type: DataTypes.INTEGER,
+          notNull: true
       },
-      feb: {
-        type: DataTypes.FLOAT,
-        allowNull: false
+    feb: {
+        type: DataTypes.INTEGER,
+        notNull: true
     },
-      mar: {
-        type: DataTypes.FLOAT,
-        allowNull: false
+    mar: {
+        type: DataTypes.INTEGER,
+        notNull: true
     },
-      apr: {
-        type: DataTypes.FLOAT,
-        allowNull: false
+    apr: {
+        type: DataTypes.INTEGER,
+        notNull: true
     },
-      may: {
-        type: DataTypes.FLOAT,
-        allowNull: false
+    may: {
+        type: DataTypes.INTEGER,
+        notNull: true
     },
-      jun: {
-        type: DataTypes.FLOAT,
-        allowNull: false
+    jun: {
+        type: DataTypes.INTEGER,
+        notNull: true
     },
-      jul: {
-        type: DataTypes.FLOAT,
-        allowNull: false
+    jul: {
+        type: DataTypes.INTEGER,
+        notNull: true
     },
-      aug: {
-        type: DataTypes.FLOAT,
-        allowNull: false
+    aug: {
+        type: DataTypes.INTEGER,
+        notNull: true
     },
-      sep: {
-        type: DataTypes.FLOAT,
-        allowNull: false
+    sep: {
+        type: DataTypes.INTEGER,
+        notNull: true
     },
-      oct: {
-        type: DataTypes.FLOAT,
-        allowNull: false
+    oct: {
+        type: DataTypes.INTEGER,
+        notNull: true
     },
-      nov: {
-        type: DataTypes.FLOAT,
-        allowNull: false
+    nov: {
+        type: DataTypes.INTEGER,
+        notNull: true
     },
-      dec: {
-        type: DataTypes.FLOAT,
-        allowNull: false
+    dec: {
+        type: DataTypes.INTEGER,
+        notNull: true
     }
     });
     return SolarData;
