@@ -16,7 +16,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <link rel="stylesheet"src="./assets/css/styles.css/">
     <title>Sun Fueled</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">    
 </head>
+<header>
+    <div class= "header" >
+           <ul class="nav justify-content-end bg-light navbar navbar-dark bg-dark">
+              <!-- li class="nav-item">
+                <a class="nav-link active" href="index.html">Active</a>
+              </li> -->
+              <li class="nav-item">
+                <a class="nav-link" href="index.html"> About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="products.html">Products</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="login.html">Login</a>
+              </li>
+          </ul>
+        </div>
+  </header>
 <body>
         {{!-- NAVBAR/HEADER --}}
     <div class="row">
@@ -28,6 +47,9 @@
     {{!-- Body content --}}
         {{{body}}}
     </div>
+
+
+
 {{!-- <script>
     
 $(document).ready(function(){
