@@ -2,7 +2,6 @@
 <div class="row">
    <div class = "container">
     <div class="row">
-        {{!-- action="/solarData" method="GET" --}}
         <form action="/solarData" method="post">
             <div class="form-content">
                     <div class="form-row">
@@ -10,7 +9,6 @@
                         <label for="inputCity">City</label>
                         <input name='city' type="text" class="form-control" id="inputCity">
                       </div>
-                      
                       <div class="form-group col-sm-3">
                         <label for="inputState">State</label>
                         <select id="inputState" class="form-control">
@@ -69,79 +67,137 @@
         </form>
     </div>
 </div>
-{{!-- Results table/charts --}}
-<div class="solarData">
 
-    {{#each sunData }}
-          {{sunData}}         
+{{!-- DATA --}}
+<div class="solarData">
+    {{#each sunData}}
+        <div id='dataNode' hidden>
+           <li name="node"> {{this}}</li> 
+        </div>
+                          
+    {{/each}}
+</div>
+
+<div class="avgCostData">
+    {{#each avgCostData}}
+        <div id='costDataNode' hidden>
+           <li name="costNode"> {{this}}</li> 
+        </div>
+                          
     {{/each}}
 </div>
 {{!-- //testChart// --}}
-<div class="row">
-    <div class="col m7">
-        <canvas id="myChart" width="700" height="400"></canvas> 
+    <div class="row">
+        <span class="col l6">
+           <p>
+               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempor nec feugiat nisl pretium fusce id velit ut. Vestibulum lectus mauris ultrices eros in.
+           </p>
+       </span>
+       <div class="row">
+       <div class="graphs col l6">
+           <canvas id="KwhAc" width="1000" height="400"></canvas> 
+       </div>
+      
     </div>
-    <span class="col m4">
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempor nec feugiat nisl pretium fusce id velit ut. Vestibulum lectus mauris ultrices eros in.
-        </p>
-    </span>
-</div>
-<div class="row">
-    <div class="col m7">
-        <canvas id="costSavings" width="700" height="400"></canvas> 
+    <div class="row">
+       <div class="graphs col l6">
+           <canvas id="costSavings" width="1000" height="400"></canvas> 
+       </div>
+        <span class="col l6">
+           <p>
+               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada nunc vel risus commodo viverra maecenas accumsan lacus vel. Eget dolor morbi non arcu risus quis varius quam quisque.
+           </p>
+       </span>
     </div>
-     <span class="col m4">
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada nunc vel risus commodo viverra maecenas accumsan lacus vel. Eget dolor morbi non arcu risus quis varius quam quisque.
-        </p>
-    </span>
 </div>
-{{!-- ////testChart --}}
-<script >
-    $(document).ready(function(){
 
-Handlebars.registerHelper('list', function(items, options) {
-  var out = "<ul>";
+</div>
+<script type="text/javascript">
+$(function(){      
+//AVG SOLAR POTENTIAL BY MONTH
+var myNodelist = document.getElementsByName("node");
+    var solarChartData = [];
+ // console.log(myNodelist.length);
+  //console.log(myNodelist);
 
-  for(var i=0, l=items.length; i<l; i++) {
-    out = out + "<li>" + options.fn(items[i]) + "</li>";
-  }
+  myNodelist.forEach(function(item){
+     // console.log(item.innerText);
+      solarChartData.push(item.innerText);
+  })
+    solarChartData.splice(0,1,);
+    solarChartData.splice(12,2);
+    //console.log(solarChartData);  
+//end avg solar
+//AVE COST DATA BY MONTH
+var myCostNodelist = document.getElementsByName("costNode");
+    var costChartData = [];
+  //console.log(myCostNodelist.length);
+ // console.log(myCostNodelist);
 
-  return out + "</ul>";
-});
+  myCostNodelist.forEach(function(item){
+   //   console.log(item.innerText);
+      costChartData.push(item.innerText);
+  })
+    costChartData.splice(0,2);
+    costChartData.splice(12,3);
+   // console.log(costChartData);
+costSavings = [];
+for(i = 0; i< solarChartData.length; i++) {
+        savings = parseInt(solarChartData[i]) * (parseInt(costChartData[i])/100);
+        console.log(savings);
+        costSavings.push(savings);
+}
+   // console.log(costSavings);
 
-    var sunData = $("#sunData");
+ //login
+    $('#loginPage').on('click',function(){
+                $.get('/loginPage',function(data,status){
+                   // console.log('login pressed');
+                })
+    })
+    function getData(){
+        console.log('getData Func executed');
+        $.ajax({
+            url: '/getData',
+            type: GET
+        }).done(function(ans){
+            console.log(JSON.stringify(ans['id']));
+            sunChartData = ans;
+            console.log(sunChartData);
+        })
+    };
+    var sunData = $("#KwhAc");
     console.log(sunData);    
-    var sunChart = $("#myChart");
-    var myChart = new Chart(sunChart, {
-        type: 'line-chart',
+    var sunChart = $("#KwhAc");
+    var acChart = new Chart(sunChart, {
+        type: 'bar',
         data: {
             labels: ["Jan", "Feb", "April", "March", "May", "June","Jul", "Aug", "Sept", "Oct", "Nov", "Dec"],
             datasets: [{
                 label: 'Kwh AC Output',
-                data: [sunData],
-                borderColor:rgba(255, 99, 132, 0.2),
+                data: solarChartData,
+                backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+                borderColor: ['rgba(255,44,33,1)'],
                 borderWidth: 1
             }]
         },
-        options: {
+         options: {
+            maintainAspectRatio: false,
+            responsive: true,
             title: {
                 display: true
             },
-                yAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Kwh'
-                    },
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
             }
-        }
-    });    
-    })
+        })
+    
+
     var costChart = $("#costSavings");
     var myChart = new Chart(costChart, {
         type: 'bar',
@@ -149,27 +205,28 @@ Handlebars.registerHelper('list', function(items, options) {
             labels: ["Jan", "Feb", "April", "March", "May", "June","Jul", "Aug", "Sept", "Oct", "Nov", "Dec"],
             datasets: [{
                 label: 'Total Cost Savings',
-                data: [costData],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)'
-                ],
+                data: costSavings,
+                backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+                borderColor: ['rgba(255,44,33,1)'],
                 borderWidth: 1
             }]
         },
         options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
+            maintainAspectRatio: false,
+            responsive: true,
+            title: {
+                display: true
+            },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
             }
-        }
-    });    
-    })
-
+        })    
+})
 </script>
+
     
