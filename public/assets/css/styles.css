@@ -1,0 +1,22 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+      
+  .carousel {
+    width:640px;
+    height:360px;
+  } 
+
+.hidden {
+    display: none;
+}
+
+.graphs {
+    height: 30vh;
+}

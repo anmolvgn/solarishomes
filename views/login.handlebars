@@ -1,28 +1,37 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
 
-<form> 
-    <div class="form-control">
+<form class="row"> 
+    <div class="form-control col 4md">
         <label>Username</label>
-        <input class="user" type="text">
+        <input name="user" class="user" type="text">
     </div>
      <div class="form-control">
         <label>Password</label>
-        <input class="password" type="password">
+        <input name="password" class="password" type="password">
     </div>
     <div class="row form-control">
-        <div class="left">
-            <button>Create Account</button>   
-        </div>
+       
         <div class="right">
-            <button>Login</button>
+            <a href="/authVeriphyIng"><button class="waves-effect waves-light btn" id="login">Login</button></a>
         </div>
 </form>
+<hr>
+<hr>
+        <div class="left">
+            <a href="/register"><button class="waves-effect waves-light btn" href="/register" id="createUser">Create Account</button> </a>  
         </div>
-
 {{!-- some client side js --}}
 <script>
     $(document).ready(function(){
-
+        $('#register').on('click',function(event){
+            event.preventDefault()
+            $.ajax({
+                url: '/newUserSetup';
+                method: 'GET'
+            }).done(function(ans){
+                console.log('routing to new user form');
+            })
+        })
 
     });
 </script>
