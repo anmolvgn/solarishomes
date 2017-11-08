@@ -1,7 +1,16 @@
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+{{!-- REGISTER PAGE --}}
+<div class="entry">
+  {{#each errors}}
+    <label class="error"><li>{{msg}}</li></label>
+  {{/each}}
+</div>
+<div>
+  <h1 class="text-muted text-center">Register</h1>  
+</div>
+
 <div class="row">
-    <div class="col md5">
-        <form> 
+    <div class="registerForm">
+        <form action="/userSetup" method="post"> 
             <div class="form-control">
                 <label>Name</label>
                 <input name="name" type="text">
@@ -10,22 +19,24 @@
                 <label>Email</label>
                 <input name="email" type="email">
             </div>
+             <div class="form-control">
+                <label>Username</label>
+                <input name="username" type="text">
+            </div>
             <div class="form-control">
-                <label>password</label>
+                <label>Password</label>
                 <input name="password" type="password" placeholder="password">
             </div>
-            <div class="register">
-                <button class="waves-effect waves-light btn">Register</button>
+             <div class="form-control">
+                <label>Confirm Password</label>
+                <input name="ConfirmPassword" type="password" placeholder="confirm password">
             </div>
+            {{!-- <div class="register"> --}}
+                <button name="Register" id="createUser" class="btn orange waves-effect waves-light ">Register</button>
+            {{!-- </div> --}}
         </form>
     </div>
 </div>
 
 
-{{!-- some client side js --}}
-<script>
-    $(document).ready(function(){
-
-    });
-</script>
 

@@ -1,15 +1,31 @@
 var db = require('../models');
-// var express = require('express');
-// var passport = require('passport');
 var Router = require('router');
 var bodyParser = require('body-parser');
 var request = require('request');
 
 var router = Router();
-    //home route
+    // home route
     router.get('/', function (req, res) {
         res.render('home');
     });
+    router.get('/products',function(req,res){
+        console.log('products get request')
+        db.Products.findAll({}).then(function(items){
+            var productList = {
+                products: items
+            }
+            console.log(productList);
+        res.render('products', productList);
+        })
+    })
+    router.get('/loginPage',function(req,res){ // routes to login page
+        console.log('routing to login page - api-routes')
+        res.render('login');
+    })
+    router.get('/register',function(req,res){ //routes to registration page
+        console.log('routing to REGISTRATION page')
+        res.render('register');
+    })
     //SOLAR DATA API
     router.post('/solarData',function(req,res){
         console.log(JSON.stringify(req.body));
@@ -39,13 +55,13 @@ var router = Router();
                 // console.log('rirst' + solarData);
                 // console.log(JSON.stringify(solarData));
             solarData = JSON.parse(JSON.stringify(solarData));
-            console.log(solarData);
+            // console.log(solarData);
                 //  var dataObject = {
                 // sunData: solarData
                 // }
-console.log(req.body.state);
+            console.log(req.body.state);
             db.CostData.findOne({where: {state: 'Colorado'}}).then(function(costData){
-                console.log(JSON.stringify(costData));
+                // console.log(JSON.stringify(costData));
                 costData = JSON.parse(JSON.stringify(costData));
                 console.log(costData);
                  var data = {
@@ -59,39 +75,9 @@ console.log(req.body.state);
         // res.render('home', dataObject, costDataObject);     
             });        
     }); 
-                ///STOP STOP STOP///
-        //    router.get('/getData',function(req, res){
-         
-                      
-        //    });  
-
-                //     db.SolarData.findOne({}).then(function(solarData){
-                //         solarData = JSON.stringify(solarData);
-                        
-                // console.log('this is solarData' +solarData);
-     // END SOLAR DATA API
-
+             
 // END GET DATA..//
 
-    router.get('/login',function(req,res){
-        console.log('login get request')
-        res.render('login');
-    })
-    router.post('/authVeriphyIng', function(req, res){
-        var user = body.user;
-        var password = body.password;
-        console.log(user +' ' + password);
-    })
-    router.get('/register',function(req,res){
-        console.log('register get request')
-        res.render('register');
-    })
-    router.get('/products',function(req,res){
-        console.log('products get request')
-        res.render('products');
-    })
-    router.post('/newUserSetup', function(req,res){
-        res.render('/register');
-    })
+  
 
 module.exports = router;

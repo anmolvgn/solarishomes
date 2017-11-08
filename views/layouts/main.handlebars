@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/esm/popper-utils.min.js"></script> --}}
-    {{!-- handlebars.js --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-    {{!-- jquery --}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <!-- Compiled and minified JavaScript -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" src="/public/assets/css/styles.css">
-    <script type="text/javascript" src="/public/assets/js/main.js"></script>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     
+      {{!-- jquery --}}
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      {{!-- Charts --}}
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>      
+       {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/esm/popper-utils.min.js"></script> --}}
+      {{!-- handlebars.js --}}
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script><!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+      <!-- Compiled and minified JavaScript -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+      <link rel="stylesheet" type="text/css" href="/css/styles.css">
+      <script type="text/javascript" src="/js/main.js"></script>
 
-    <title>Sun Fueled</title>
-</head>
+      <title>Sun Fueled</title>
+  </head>
 
 <body>
     {{!-- NAVBAR --}}
-            <nav>
-            <div class="nav-wrapper black">
+    <nav>
+        <div class="nav-wrapper">
                 <a href="/" class="brand-logo">Sun Harvesting Inc.</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="/about">About</a></li>
                 <li><a href="/products">Products</a></li>
-                <li><a href="/login">Login</a></li>
+                <li><a href="/loginPage">Login</a></li>
                 </ul>
-            </div>
-            </nav>
-    <div class="container">    
+        </div>
+      </nav>
+<div class="container">    
     {{!-- START carousel --}}
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    {{!-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
         <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -64,18 +65,21 @@
         <span class="glyphicon glyphicon-chevron-right"></span>
         <span class="sr-only">Next</span>
         </a>
-    </div>
+    </div> --}}
+<br>
+<br>
+<br>
 
 {{!-- END carousel --}}
    {{!-- --- --}}
+    <div>
         {{{body}}}
-            
-               
-     </div>
-   
-   
+   </div>
 
-   <footer class="page-footer black">
+</div>
+<div class="push"></div>
+
+   <footer class="footer">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
@@ -87,7 +91,6 @@
                 <ul>
                   <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
                   <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-          
                 </ul>
               </div>
             </div>

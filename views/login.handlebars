@@ -1,38 +1,30 @@
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
-
-<form class="row"> 
-    <div class="form-control col 4md">
-        <label>Username</label>
-        <input name="user" class="user" type="text">
+{{!-- LOGIN PAGE --}}
+<div class="row">
+    <div class="col-lg-6 loginForm">
+        <form action="/login" method="post" class="form-control center"> 
+            <div class="form-group">
+                <label class="left">Username</label>
+                <input name="username" id="user" type="text">
+            </div>
+            <div class="form-group">
+                <label class="left">Password</label>
+                <input name="password" id="password" type="password">
+            </div>
+            <div class="row form-content">
+                <div class="col-lg-6 right">
+                    <div class="text-center">
+            <button value="Log In" type="submit" class="orange btn btn-lrg" id="login">Login</button>
+                    </div>
+                </div>
+            </div>
+        </form>    
     </div>
-     <div class="form-control">
-        <label>Password</label>
-        <input name="password" class="password" type="password">
-    </div>
-    <div class="row form-control">
-       
-        <div class="right">
-            <a href="/authVeriphyIng"><button class="waves-effect waves-light btn" id="login">Login</button></a>
-        </div>
-</form>
-<hr>
-<hr>
-        <div class="left">
-            <a href="/register"><button class="waves-effect waves-light btn" href="/register" id="createUser">Create Account</button> </a>  
-        </div>
-{{!-- some client side js --}}
-<script>
-    $(document).ready(function(){
-        $('#register').on('click',function(event){
-            event.preventDefault()
-            $.ajax({
-                url: '/newUserSetup';
-                method: 'GET'
-            }).done(function(ans){
-                console.log('routing to new user form');
-            })
-        })
+</div>
+<div class="form-group">
+   <div class="col-lg-2 text-center">
+        <a href="/register"><li class="waves-effect 
+        btn">Create Account</li>
+   </div></a>
+</div>   
 
-    });
-</script>
 

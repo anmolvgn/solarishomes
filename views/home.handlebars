@@ -7,7 +7,7 @@ alert('hello there');
 
 <div class="container">
 
-<div class="row form-control">
+<div class="row solarForm form-control">
     {{!-- action="/solarData" method="GET" --}}
     <form class="col md6" action="/solarData" method="post">
         <div class="form-content">
@@ -43,11 +43,10 @@ alert('hello there');
                 </select>
             <label for="tilt">Tilt</label>
             <input name='tilt' type="text">
-            <button name="calcSolar" onClick="getData" class="orange center waves-effect waves-light btn">Calculate</button>
+            <button name="calcSolar" class="orange center waves-effect waves-light btn">Calculate</button>
         </div>    
     </form>
 </div>
-
 {{!-- DATA --}}
 <div class="solarData">
 
@@ -67,147 +66,31 @@ alert('hello there');
                           
     {{/each}}
 </div>
-{{!-- //testChart// --}}
+{{!-- //charts// --}}
     <div class="row">
-        <span class="col l6">
-           <p>
-               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempor nec feugiat nisl pretium fusce id velit ut. Vestibulum lectus mauris ultrices eros in.
-           </p>
-       </span>
-       <div class="row">
-       <div class="graphs col l6">
-           <canvas id="KwhAc" width="1000" height="400"></canvas> 
-       </div>
-      
-    </div>
-    <div class="row">
-       <div class="graphs col l6">
-           <canvas id="costSavings" width="1000" height="400"></canvas> 
-       </div>
-        <span class="col l6">
-           <p>
-               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada nunc vel risus commodo viverra maecenas accumsan lacus vel. Eget dolor morbi non arcu risus quis varius quam quisque.
-           </p>
-       </span>
-    </div>
+        <div class="row">
+            <div class="graphs col l6">
+                <canvas id="KwhAc" width="1000" height="400"></canvas> 
+            </div> 
+            <span class="col l6">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempor nec feugiat nisl pretium fusce id velit ut. Vestibulum lectus mauris ultrices eros in.
+                </p>
+            </span>
+        </div>
+        <div class="row">
+            <div class="graphs col l6">
+                <canvas id="costSavings" width="1000" height="400"></canvas> 
+            </div>
+                <span class="col l6">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada nunc vel risus commodo viverra maecenas accumsan lacus vel. Eget dolor morbi non arcu risus quis varius quam quisque.
+                    </p>
+                </span>
+            </div>
+        </div>
+
 </div>
 
-</div>
-<script type="text/javascript">
-$(function(){      
-//AVG SOLAR POTENTIAL BY MONTH
-var myNodelist = document.getElementsByName("node");
-    var solarChartData = [];
- // console.log(myNodelist.length);
-  //console.log(myNodelist);
-
-  myNodelist.forEach(function(item){
-     // console.log(item.innerText);
-      solarChartData.push(item.innerText);
-  })
-    solarChartData.splice(0,1,);
-    solarChartData.splice(12,2);
-    //console.log(solarChartData);  
-//end avg solar
-//AVE COST DATA BY MONTH
-var myCostNodelist = document.getElementsByName("costNode");
-    var costChartData = [];
-  //console.log(myCostNodelist.length);
- // console.log(myCostNodelist);
-
-  myCostNodelist.forEach(function(item){
-   //   console.log(item.innerText);
-      costChartData.push(item.innerText);
-  })
-    costChartData.splice(0,2);
-    costChartData.splice(12,3);
-   // console.log(costChartData);
-costSavings = [];
-for(i = 0; i< solarChartData.length; i++) {
-        savings = parseInt(solarChartData[i]) * (parseInt(costChartData[i])/100);
-        console.log(savings);
-        costSavings.push(savings);
-}
-   // console.log(costSavings);
-
- //login
-    $('#loginPage').on('click',function(){
-                $.get('/loginPage',function(data,status){
-                   // console.log('login pressed');
-                })
-    })
-    function getData(){
-        console.log('getData Func executed');
-        $.ajax({
-            url: '/getData',
-            type: GET
-        }).done(function(ans){
-            console.log(JSON.stringify(ans['id']));
-            sunChartData = ans;
-            console.log(sunChartData);
-        })
-    };
-    var sunData = $("#KwhAc");
-    console.log(sunData);    
-    var sunChart = $("#KwhAc");
-    var acChart = new Chart(sunChart, {
-        type: 'bar',
-        data: {
-            labels: ["Jan", "Feb", "April", "March", "May", "June","Jul", "Aug", "Sept", "Oct", "Nov", "Dec"],
-            datasets: [{
-                label: 'Kwh AC Output',
-                data: solarChartData,
-                backgroundColor: ['rgba(255, 99, 132, 0.2)'],
-                borderColor: ['rgba(255,44,33,1)'],
-                borderWidth: 1
-            }]
-        },
-         options: {
-            maintainAspectRatio: false,
-            responsive: true,
-            title: {
-                display: true
-            },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero:true
-                        }
-                    }]
-                }
-            }
-        })
-    
-
-    var costChart = $("#costSavings");
-    var myChart = new Chart(costChart, {
-        type: 'bar',
-        data: {
-            labels: ["Jan", "Feb", "April", "March", "May", "June","Jul", "Aug", "Sept", "Oct", "Nov", "Dec"],
-            datasets: [{
-                label: 'Total Cost Savings',
-                data: costSavings,
-                backgroundColor: ['rgba(255, 99, 132, 0.2)'],
-                borderColor: ['rgba(255,44,33,1)'],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            maintainAspectRatio: false,
-            responsive: true,
-            title: {
-                display: true
-            },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero:true
-                        }
-                    }]
-                }
-            }
-        })    
-})
-</script>
 
     
