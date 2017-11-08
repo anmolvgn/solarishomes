@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "root",
-    "password": "",
+    "password": "Honda@13",
     "database": "solar_db",
-    "host": "",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {

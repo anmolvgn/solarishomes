@@ -1,56 +1,75 @@
 {{!-- User Input Form --}}
-{{!-- <script>
-    
-$(document).ready(function(){
-alert('hello there');
-</script> --}}
+<div class="row">
+   <div class = "container">
+    <div class="row">
+        <form action="/solarData" method="post">
+            <div class="form-content">
+                    <div class="form-row">
+                      <div class="form-group col-md-3">
+                        <label for="inputCity">City</label>
+                        <input name='city' type="text" class="form-control" id="inputCity">
+                      </div>
+                      <div class="form-group col-sm-3">
+                        <label for="inputState">State</label>
+                        <select id="inputState" class="form-control">
+                          <option selected>Choose...</option>
+                          <option name='state'>...</option>
+                        </select>
+                      </div>
+                     </div>
+                    <div class="form-group col-sm-3">
+                        <label for="losses">losses</label>
+                        <select id="losses" class="form-control">
+                          <option selected>Choose...</option>
+                          <option name='losses'>...</option>
+                        </select>
+                      </div>
+                       <div class="form-group col-sm-3">
+                        <label for="azimuth">azimuth</label>
+                        <select id="azimuth" class="form-control">
+                          <option selected>Choose...</option>
+                          <option name='azimuth'>...</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-sm-3">
+                        <label for="array_type">array_type</label>
+                        <select id="array_type" class="form-control">
+                          <option selected>Choose...</option>
+                          <option name='array_type'>...</option>
+                        </select>
+                      
+                       <div class="form-group col-sm-3">
+                        <label for="module_type">module_type</label>
+                        <select id="module_type" class="form-control">
+                          <option selected>Choose...</option>
+                          <option name='module_type'>...</option>
+                        </select>
+                        </div>
+                      </div>
+                      <div class="form-group col-sm-3">
+                        <label for="system_capacity">system_capacity</label>
+                        <select id="system_capacity" class="form-control">
+                          <option selected>Choose...</option>
+                          <option name='system_capacity'>...</option>
+                        </select>
+                     
+                       <div class="form-group col-sm-3">
+                        <label for="tilt">tilt</label>
+                        <select id="tilt" class="form-control">
+                          <option selected>Choose...</option>
+                          <option name='tilt'>...</option>
+                        </select>
+                      </div>
+                    </div>
 
-<div class="container">
-
-<div class="row form-control">
-    {{!-- action="/solarData" method="GET" --}}
-    <form class="col md6" action="/solarData" method="post">
-        <div class="form-content">
-            {{!-- Address:<input name='address' type="text"> --}}
-            <label for="textarea1">City</label>
-            <input name='city' type="text">
-            <label for="textarea1">State</label>
-            <input name='state' type="text">
-            <label for="textarea1">Losses</label>
-            <input name='losses' type="text">
-            <label for="textarea1">Azimuth</label>
-            <input name='azimuth' type="text">
-            <label for="array_type">Arrray Type</label>
-                <select>
-                    <option value="" disabled selected>Choose your option</option>
-                    <option name='array_type' value="1">Option 1</option>
-                    <option name='array_type' value="2">Option 2</option>
-                    <option name='array_type' value="3">Option 3</option>
-                </select>
-            <label for="module_type">Module Type</label>            
-                <select>
-                    <option value="" disabled selected>Choose your option</option>
-                    <option name='module_type' value="1">Option 1</option>
-                    <option name='module_type' value="2">Option 2</option>
-                    <option name='module_type' value="3">Option 3</option>
-                </select>
-            <label for="system_capacity">System Capacity</label>   
-             <select>
-                    <option value="" disabled selected>Choose your option</option>
-                    <option name='system_capacity' value="1">Option 1</option>
-                    <option name='system_capacity' value="2">Option 2</option>
-                    <option name='system_capacity' value="3">Option 3</option>
-                </select>
-            <label for="tilt">Tilt</label>
-            <input name='tilt' type="text">
-            <button name="calcSolar" onClick="getData" class="orange center waves-effect waves-light btn">Calculate</button>
-        </div>    
-    </form>
+                <button name="calcSolar" class="right">Calculate</button>
+            </div>    
+        </form>
+    </div>
 </div>
 
 {{!-- DATA --}}
 <div class="solarData">
-
     {{#each sunData}}
         <div id='dataNode' hidden>
            <li name="node"> {{this}}</li> 
