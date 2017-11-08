@@ -1,11 +1,15 @@
 const mySql = require('mysql');
 
-var connection = mySql.createConnection({
+if (process.env.JAWSDB_URL) {
+	connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+    var connection = mySql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
     database: 'solar_db'
 })
+}
 //connect and handle err/success. 
 connection.connect(function(err){
     if(err) {
@@ -13,4 +17,6 @@ connection.connect(function(err){
         return;
     }
     console.log('connected as id' + connection.threadId);
-})
+});
+
+module.exports = connection;
