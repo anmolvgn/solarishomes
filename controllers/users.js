@@ -5,6 +5,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var httpResponse = require('express-http-response');
 var Router = require('router');
 var bodyParser = require('body-parser');
+var routes = require('./api-routes');
 const { check, validationResult } = require('express-validator/check');
 const { matchedData, sanitize } = require('express-validator/filter');
 
@@ -45,49 +46,35 @@ var users = Router();
 //     console.log('user form submit get request')
     
 // })
-//USER AUTHENTICATION - configuration
-passport.use(new LocalStrategy({
-    // username: 'username',
-    // password: 'password',
-    passReqToCallback: true,
-    session: false
-},
-    function(req, username, password, done) {
-        console.log(password + ' & ' + username);        
-        db.Users.findOne({where: {username: username }}, function (err, user) {
-            if (err) { return done(err); }
-                if (!user) {
-                    console.log(username);
-                    console.log(user);
+//USER AUTHENTICATION - local strategy
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+        console.log('user name = ', username);
+      db.Users.findOne({ where: {username: username} }).then(function(err, user) {
+            console.log('function run');    
+        if (err) { 
+                console.log(err);
+                return done(err); 
+            } else if (!user) {
+                console.log(username);
                 return done(null, false, { message: 'Incorrect username.' });
-                }
-                    if (user.password != password) {
-                        console.log(password + ' & ' + user.password);
-                    return done(null, false, { message: 'Incorrect password.' });
-                    }
-            return done(null, user);
+            } else if (user.password !== password) {
+                console.log(password + ' & ' + user.password);
+                return done(null, false, { message: 'Incorrect password.' });
+            } else {
+                console.log('success');
+                return done(null, user);
+            }
         });
     }
 ));
-//AUTH post //authenticate
-// router.post('/login',    
-// passport.authenticate('local', 
-// { successRedirect: '/',
-//     failureRedirect: '/',
-//     failureFlash: true })
-// );
 
 users.post('/login',
-passport.authenticate('local',{ 
-    failureRedirect: '/home',
-    failureFlash: true }),
-        function(req, res) {
-            console.log('AUTHENTICATING');
-            console.log(req.body.username);
-        // If this function gets called, authentication was successful.
-        // `req.user` contains the authenticated user.
-        res.redirect('/' + req.user.username);
-});
+passport.authenticate('local', { 
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true })
+);
 
 passport.serializeUser(function(user, done) {
     done(null, user.id);
@@ -101,7 +88,7 @@ passport.deserializeUser(function(id, done) {
     });
 });
 
-module.exports = users
+module.exports = users;
 
 
 

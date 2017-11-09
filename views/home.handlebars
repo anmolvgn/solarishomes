@@ -1,12 +1,6 @@
-{{!-- User Input Form --}}
-{{!-- <script>
-    
-$(document).ready(function(){
-alert('hello there');
-</script> --}}
 
 <div class="container">
-
+{{user}}
 <div class="row solarForm form-control">
     {{!-- action="/solarData" method="GET" --}}
     <form class="col md6" action="/solarData" method="post">
@@ -57,7 +51,6 @@ alert('hello there');
                           
     {{/each}}
 </div>
-
 <div class="avgCostData">
     {{#each avgCostData}}
         <div id='costDataNode' hidden>
@@ -89,7 +82,6 @@ alert('hello there');
                 </span>
             </div>
         </div>
-
 </div>
 
 
