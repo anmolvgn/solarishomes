@@ -4,13 +4,13 @@
 module.exports = function(sequelize, dataTypes) {
     var modelTypes = sequelize.define("modelTypes", {
         ModelType: dataTypes.STRING,
-        ApproxEff: dataTypes.FLOAT(3),
-        ModuleCover: dataTypes, STRING,
-        TempCoeff: dataTypes.FLOAT(3)
+        ApproxEff: dataTypes.FLOAT,
+        ModuleCover: dataTypes.STRING,
+        TempCoeff: dataTypes.FLOAT
     });
 
     modelTypes.associate = function(models) {
-        modelTypes.belongsTo(models.products, {
+        modelTypes.belongsTo(models.Products, {
             foreignKey: {
                 allowNull: false
             }

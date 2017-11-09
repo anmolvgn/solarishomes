@@ -13,11 +13,15 @@ module.exports = function(sequelize, DataTypes){
                 allowNull: false
             }
         });
+<<<<<<< HEAD
         Items.belongsTo(models.Products, {
             foreignKey: {
                 allowNull: false
             }
         });
+=======
+      
+>>>>>>> cbcc2fd132f398eb63540bee0cd954802ba68201
     };
     return Items;
 };

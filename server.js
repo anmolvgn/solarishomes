@@ -1,13 +1,20 @@
 var express = require('express');
 var exphbs  = require('express-handlebars');
+var app = express();
+var db = require('./models');
+var httpResponse = require('express-http-response');
 var passport = require('passport');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var bodyParser = require('body-parser');
+var users = require('./controllers/users');
 var routes = require('./controllers/api-routes');
 var request = require('request');
-var db = require('./models');
+var flash = require('connect-flash');
+const expressValidator = require('express-validator');
 
-var app = express();
-var port = process.env.PORT || 3000;
+// console.log(require);
+var port = process.env.PORT || 4444;
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -20,7 +27,18 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 app.use(express.static("public"));
 
+app.use(cookieParser());
+app.use(session({ secret: "cats",
+    resave: false, 
+    saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+app.use(expressValidator());
+
 app.use('/',routes);
+app.use('/',users);
+
 
 db.sequelize.sync({}).then(function(){
    app.listen(port,function(err){
@@ -29,8 +47,3 @@ db.sequelize.sync({}).then(function(){
 }); 
 });
 
-app.post('/login',
-    passport.authenticate('local'),
-    function (req, res) {
-        res.redirect('/users/' + req.user.username);
-});

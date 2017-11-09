@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+nav {
+  background-color: #cc6600;
+}
+.footer {
+  background-color: #cc6600;
+}
+  main {
+    flex: 1 0 auto;
+  }
+
+.carousel {
+    width:640px;
+    height:360px;
+} 
+
+.hidden {
+    display: none;
+}
+.graphs {
+    height: 30vh;
+}
+.solarForm {
+  width: 44%;
+  margin: 0 auto;
+  /* float: none; */
+}
+.loginForm {
+  width: 44%;
+  margin: 0 auto;
+  /* float: none; */
+}
+.registerForm {
+  width: 66%;
+  margin: 0 auto;
+  /* float: none; */
+}
+.productsTable {
+  width: 88%;
+  margin: 0 auto;
+  /* float: none; */
+}
