@@ -1,28 +1,30 @@
 
 $(function(){  
-    // $("#login").on('click',function(event){
-    //     var creds = document.getElementById('user').val().trim();
-    //     console.log(creds)
-    //      event.preventDefault()
-    //  $.ajax({
-    //        url: '/login',
-    //      method: 'POST'
-    //      }).done(function(ans){
-    //        console.log('going to authenticate...');
-    //                alert('what is going on here');
-    //     })
-    //  });
 
-    //  $('#createUser').on('click',function(event){
-    //      console.log(req.body);
-    //     event.preventDefault()
-    //       $.ajax({
-    //         url: '/userSetup',
-    //          method: 'POST'
-    //       }).done(function(ans){
-    //         console.log('routing to new user form');
-    //       })
-    //   }) 
+    $(".button-collapse").sideNav();
+
+    $("#login").on('click',function(event){
+        var creds = document.getElementById('user').val().trim();
+        console.log(creds)
+         event.preventDefault()
+     $.ajax({
+           url: '/login',
+         method: 'POST'
+         }).done(function(ans){
+           console.log('going to authenticate...');
+        })
+     });
+
+     $('#createUser').on('click',function(event){
+         console.log(req.body);
+        event.preventDefault()
+          $.ajax({
+            url: '/userSetup',
+             method: 'POST'
+          }).done(function(ans){
+            console.log('routing to new user form');
+          })
+      }) 
       //AVG SOLAR POTENTIAL BY MONTH
 var myNodelist = document.getElementsByName("node");
 var solarChartData = [];
@@ -66,8 +68,8 @@ var acChart = new Chart(sunChart, {
         datasets: [{
             label: 'Kwh AC Output',
             data: solarChartData,
-            backgroundColor: ['rgba(255, 99, 132, 0.2)'],
-            borderColor: ['rgba(255,44,33,1)'],
+            // backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+            // borderColor: ['rgba(255,44,33,1)'],
             borderWidth: 1
         }]
     },
@@ -96,8 +98,8 @@ var myChart = new Chart(costChart, {
         datasets: [{
             label: 'Total Cost Savings',
             data: costSavings,
-            backgroundColor: ['rgba(255, 99, 132, 0.2)'],
-            borderColor: ['rgba(255,44,33,1)'],
+            // backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+            // borderColor: ['rgba(255,44,33,1)'],
             borderWidth: 1
         }]
     },
@@ -110,7 +112,10 @@ var myChart = new Chart(costChart, {
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero:true
+                        beginAtZero:true,
+                        callback: function(value, index, values) {
+                            return '$' + Math.round(value,0);
+                        }
                     }
                 }]
             }
