@@ -4,7 +4,8 @@
     "password": "",
     "database": "solar_db",
     "host": "",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "operatorsAliases": "Sequelize.Op"
   },
   "test": {
     "username": "root",

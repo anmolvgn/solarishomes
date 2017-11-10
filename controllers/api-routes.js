@@ -31,7 +31,7 @@ var router = Router();
     router.post('/solarData',function(req,res){
         // console.log(JSON.stringify(req.body.city));
         var city = req.body.city;
-        var state = req.body.state;
+        var state = req.body.state.toString();
         var address = city + ','+ state;
         // console.log(address);
         // , losses = parseInt(req.body.losses), tilt = parseInt(req.body.tilt),azimuth = parseInt(req.body.azimuth), module_type = parseInt(req.body.module_type), array_type = parseInt(req.body.array_type), system_capacity = parseInt(req.body.system_capacity);
