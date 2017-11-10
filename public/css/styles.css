@@ -7,6 +7,18 @@ nav {
   background-color: #545017;
   margin-bottom: 44px;
 }
+.formBtn{
+  padding: 11px;
+}
+.aboveForm {
+  padding: 22px;
+  background-image: url("public/img/carboon.jpg");  
+}
+blockquote {
+  margin: 20px 0;
+  padding-left: 1.5rem;
+  border-left: 5px solid #545017;
+}
 .wrapper {
   min-height: 100%;
   margin-bottom: -111px;

@@ -1,8 +1,43 @@
 <div>
+
+    {{!-- DATA --}}
+    <div class="solarData">
+
+        {{#each sunData}}
+            <div id='dataNode' hidden>
+            <li name="node"> {{this}}</li> 
+            </div>
+                            
+        {{/each}}
+    </div>
+    <div class="avgCostData">
+        {{#each costData}}
+            <div id='costDataNode' hidden>
+            <li name="costNode"> {{this}}</li> 
+            </div>
+                            
+        {{/each}}
+    </div>
+  
+                <span class="col-md-12 text-center">
+                    <blockquote>
+                        <p>With a typical 4 kW residential solar power system, you can expect to offset nearly 200,000 pounds of CO2 over 25 years. If that sounds like a lot, it's because it is. That level of offset emissions is equal to planting about 2,316 trees. ... Using solar power, you're reducing your electricity demand on the grid.</p>
+                        <footer class="text-muted">Solar Source Guide <cite title="Source Title">The Environmental Benefits of Solar Power</cite></footer>
+                    </blockquote>
+                </span>
+
+    <div class="row aboveForm">
+            <strong class="col-lg-12">
+              <h5 class="text-muted text-center">Input your city & state to see how much power and cost savings you can generate.</h5>
+          </strong>
+    </div>
+            
     <div class="row">
-        {{!-- action="/solarData" method="GET" --}}   
-        <div  class="col-sm-6 solarForm">
+        
+        <div  class="col-sm-6 solarForm form-control">
+          
             <form action="/solarData" method="post">
+                
                 <div class="form-content">
                     {{!-- Address:<input name='address' type="text"> --}}
                     <label for="textarea1">City</label>
@@ -64,54 +99,32 @@
                                 <option value="WY">Wyoming</option>
                             </select>
                     {{!-- <input name='state' type="text"> --}}
-                    <div class="right">
+                    <div class="right formBtn">
                         <button name="calcSolar" class="orange waves-effect waves-light btn">Submit</button>
                     </div>
                 </div>    
             </form>
         </div>
     </div>
-    {{!-- DATA --}}
-    <div class="solarData">
-
-        {{#each sunData}}
-            <div id='dataNode' hidden>
-            <li name="node"> {{this}}</li> 
-            </div>
-                            
-        {{/each}}
-    </div>
-    <div class="avgCostData">
-        {{#each costData}}
-            <div id='costDataNode' hidden>
-            <li name="costNode"> {{this}}</li> 
-            </div>
-                            
-        {{/each}}
-    </div>
-    {{!-- //charts// --}}
-             <span class="col l6 text-center">
-                    <p>
-                       On average residents in the state of {{this.state}} pay ${{this.averageCost}} per a Kwh and the addition of solar panels to a home can generate {{this.avgEnergy}} ac power....
-                    </p>
-            </span>
+             
             <div class="row chartText">
                 <div class="graphs col l6">
                     <canvas id="KwhAc" width="33vh" height="80vw"></canvas> 
                 </div> 
             </div> 
            
-        
+            <span class="col l6 text-center">
+                    <p>
+                       The avearage residential solar panel installation can save residents in <strong>{{this.city}}, {{this.state}} </strong> roughly <strong><span id="totalSaved"></span></strong> a year! Solar panels are a great investment for your home and the benefits are far more reaching. Browse our <a href="/products">Products</a> and get started on a bright future today!
+                    </p>
+            </span> 
             <div class="row chartText">    
                 <div class="graphs col l6">
                     <canvas id="costSavings" width="33vh" height="80vw"></canvas> 
                 </div>
-            </div>       
-                <span class="col l6 text-center">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada nunc vel risus commodo viverra maecenas accumsan lacus vel. Eget dolor morbi non arcu risus quis varius quam quisque.
-                    </p>
-                </span>
+            </div>   
+               
+                
         <div class="push"></div>
     </div>
 

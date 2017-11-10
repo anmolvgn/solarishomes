@@ -25,6 +25,8 @@ $(function(){
             console.log('routing to new user form');
           })
       }) 
+    
+
       //AVG SOLAR POTENTIAL BY MONTH
 var myNodelist = document.getElementsByName("node");
 var solarChartData = [];
@@ -36,7 +38,7 @@ myNodelist.forEach(function(item){
 })
 solarChartData.splice(0,1,);
 solarChartData.splice(12,2);
-//console.log(solarChartData);  
+console.log(solarChartData);  
 //end avg solar
 //AVE COST DATA BY MONTH
 var myCostNodelist = document.getElementsByName("costNode");
@@ -51,12 +53,24 @@ costChartData.splice(0,2);
 costChartData.splice(12,3);
 // console.log(costChartData);
 costSavings = [];
+var totalSaved = 0;
 for(i = 0; i< solarChartData.length; i++) {
     savings = parseInt(solarChartData[i]) * (parseInt(costChartData[i])/100);
     console.log(savings);
     costSavings.push(savings);
+    totalSaved += savings;
 }
-// console.log(costSavings);
+console.log(totalSaved);
+totalSaved = Math.round(totalSaved);
+var currency = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0,
+  });
+  
+  totalSaved = currency.format(totalSaved);
+  console.log(totalSaved);
+$('#totalSaved').html(totalSaved);
 
 var sunData = $("#KwhAc");
 console.log(sunData);    
@@ -91,6 +105,7 @@ var acChart = new Chart(sunChart, {
 
 
 var costChart = $("#costSavings");
+console.log(costChart);
 var myChart = new Chart(costChart, {
     type: 'bar',
     data: {

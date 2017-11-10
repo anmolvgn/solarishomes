@@ -69,6 +69,7 @@ passport.use(new LocalStrategy(
     }
 ));
 
+
 users.post('/login',
 passport.authenticate('local', { 
     successRedirect: '/',
