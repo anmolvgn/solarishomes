@@ -1,4 +1,9 @@
+
+
 {
+  "scripts": {
+  "start": "node server.js"
+},
   "development": {
     "username": "root",
     "password": "",
