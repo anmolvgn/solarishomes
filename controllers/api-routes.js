@@ -18,6 +18,7 @@ var router = Router();
         res.render('products', productList);
         })
     })
+    // createUser
     router.get('/loginPage',function(req,res){ // routes to login page
         console.log('routing to login page - api-routes')
         res.render('login');
@@ -28,13 +29,18 @@ var router = Router();
     })
     //SOLAR DATA API
     router.post('/solarData',function(req,res){
-        console.log(JSON.stringify(req.body));
-        var address = req.body.city + ','+ req.body.state, losses = parseInt(req.body.losses), tilt = parseInt(req.body.tilt),azimuth = parseInt(req.body.azimuth), module_type = parseInt(req.body.module_type), array_type = parseInt(req.body.array_type), system_capacity = parseInt(req.body.system_capacity);
-        var key = 'qmVVrtllpIclFnaKUH3KayluRYB1bjnvZFOtgUAu';
-        var query = 'https://developer.nrel.gov/api/pvwatts/v5.json?api_key='+key+'&address='+address+'&system_capacity='+system_capacity+'&azimuth='+azimuth+'&tilt='+tilt+'&array_type='+array_type+'&module_type='+module_type+'&losses='+losses
+        // console.log(JSON.stringify(req.body.city));
+        var city = req.body.city;
+        var state = req.body.state;
+        var address = city + ','+ state;
+        // console.log(address);
+        // , losses = parseInt(req.body.losses), tilt = parseInt(req.body.tilt),azimuth = parseInt(req.body.azimuth), module_type = parseInt(req.body.module_type), array_type = parseInt(req.body.array_type), system_capacity = parseInt(req.body.system_capacity);
+        // var key = 'qmVVrtllpIclFnaKUH3KayluRYB1bjnvZFOtgUAu';
+        // var query = 'https://developer.nrel.gov/api/pvwatts/v5.json?api_key='+key+'&address='+address+'&system_capacity='+system_capacity+'&azimuth='+azimuth+'&tilt='+tilt+'&array_type='+array_type+'&module_type='+module_type+'&losses='+losses
         // console.log(query);
         // request for Solar Radiation data//
-        query = 'https://developer.nrel.gov/api/pvwatts/v5.json?api_key=qmVVrtllpIclFnaKUH3KayluRYB1bjnvZFOtgUAu&address=Broomfield,Colorado&system_capacity=4&azimuth=180&tilt=0&array_type=2&module_type=1&losses=14'
+        query = 'https://developer.nrel.gov/api/pvwatts/v5.json?api_key=qmVVrtllpIclFnaKUH3KayluRYB1bjnvZFOtgUAu&address='+address+'&system_capacity=4&azimuth=180&tilt=0&array_type=2&module_type=1&losses=14';
+        // console.log(query);
             request(query, (err, res, body) => {
                 if (err) { return console.log(err); }
                     body = JSON.parse(body);
@@ -45,30 +51,53 @@ var router = Router();
                     key = cals[i].toString();
                     value = Math.round(ac_monthly[i]).toString();
                     objData[key] = value;
+                    total += ac_monthly[i];
                 }
-                // console.log(objData);
+               
                     db.SolarData.create(objData).then(function(solarData){ 
                     })
             });
-           
+            var total = 0;                                       
+            
             db.SolarData.findOne({}).then(function(solarData){
-                // console.log('rirst' + solarData);
-                // console.log(JSON.stringify(solarData));
+                len = solarData.length;
+                console.log(len);
+                for(i = 0; i < solarData.length; i++) {
+                    value = parseInt(Math.round(solarData[i]));
+                    total += value;
+                    console.log('sum of solarData is', value);
+                }
+                    var avgEnergy = total/solarData.length;
+                    avgEnergy = parseInt(avgEnergy);
+                    console.log('avearage energy is', avgEnergy);
             solarData = JSON.parse(JSON.stringify(solarData));
             // console.log(solarData);
                 //  var dataObject = {
                 // sunData: solarData
                 // }
-            console.log(req.body.state);
-            db.CostData.findOne({where: {state: 'Colorado'}}).then(function(costData){
-                // console.log(JSON.stringify(costData));
+            // console.log(req.body.state);
+            // console.log(req.body.city);
+            db.CostData.findOne({where: {state: state}}).then(function(costData){
+                console.log(JSON.stringify(costData));
+                for( var i = 0; i < costData.length; i++ ){
+                    console.log(costData[i]);
+                    total += parseInt( costData[i]);
+                    console.log('TOTAL', total) 
+                }
+                console.log('total cost is ' +total);
+                var avgCost = parseInt(total)/parseInt(costData.length);
+                avgCost = parseInt(avgCost);
+                console.log('avgCost is ', avgCost);
                 costData = JSON.parse(JSON.stringify(costData));
-                console.log(costData);
+                // console.log(costData);
                  var data = {
                     sunData: solarData,
-                    avgCostData: costData
+                    costData: costData,
+                    state: state,
+                    averageCost: avgCost,
+                    avgEnergy: avgEnergy
                 }
-                console.log(data);
+                // console.log(data);
                 // res.writeHead(200, { 'Content-Type': 'text/plain' });                
                 res.render('home', data); 
             }); 

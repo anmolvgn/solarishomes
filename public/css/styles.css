@@ -1,18 +1,32 @@
 body {
     display: flex;
-    min-height: 100vh;
+    height: 100vh;
     flex-direction: column;
   }
 nav {
-  background-color: #cc6600;
+  background-color: #545017;
+  margin-bottom: 44px;
 }
-.footer {
-  background-color: #cc6600;
+.wrapper {
+  min-height: 100%;
+  margin-bottom: -111px;
+}
+
+.footer{
+    /* background-image: url("/img/carboon.jpg");   */
+  margin-bottom: 110;
+  padding-top: 22px;
+  background-color: #545017;
+}
+.push {
+height: 111px;
 }
   main {
     flex: 1 0 auto;
   }
-
+h1 {
+  padding-top: 22px;
+}
 .carousel {
     width:640px;
     height:360px;
@@ -22,29 +36,35 @@ nav {
     display: none;
 }
 .graphs {
-    height: 30vh;
+    height: 44vh;
+    width: auto;
+}
+.chartText p {
+  vertical-align: middle;
 }
 .solarForm {
   width: 44%;
+  /* display: inline-block; */
   margin: 0 auto;
   /* float: none; */
 }
 .loginForm {
+  padding-top: 44;  
   width: 44%;
   margin: 0 auto;
   /* float: none; */
 }
 .registerForm {
-  width: 66%;
+  width: 55%;
   margin: 0 auto;
   /* float: none; */
 }
 .productsTable {
+  padding-top: 44;  
   width: 88%;
   margin: 0 auto;
   /* float: none; */
 }
-
-.push {
-  padding-top: 88px;
+a {
+  text-decoration: none !important;
 }

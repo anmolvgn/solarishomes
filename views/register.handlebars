@@ -4,13 +4,12 @@
     <label class="error"><li>{{msg}}</li></label>
   {{/each}}
 </div>
-<div>
-  <h1 class="text-muted text-center">Register</h1>  
-</div>
+
 
 <div class="row">
-    <div class="registerForm">
-        <form action="/userSetup" method="post"> 
+    <div class="registerForm"> 
+        {{!-- action="/userSetup" method="post" --}}
+        <form> 
             <div class="form-control">
                 <label>Name</label>
                 <input name="name" type="text">
@@ -32,7 +31,7 @@
                 <input name="ConfirmPassword" type="password" placeholder="confirm password">
             </div>
             {{!-- <div class="register"> --}}
-                <button name="Register" id="createUser" class="btn orange waves-effect waves-light ">Register</button>
+                <button name="Register" id="createUser" class="right btn-lg orange waves-effect waves-light ">Register</button>
             {{!-- </div> --}}
         </form>
     </div>
