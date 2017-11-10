@@ -12,12 +12,12 @@ if (process.env.JAWSDB_URL) {
 })
 }
 //connect and handle err/success. 
-connection.connect(function(err){
-    if(err) {
-        console.error('error connecting: '+ err.stack);
-        return;
-    }
-    console.log('connected as id' + connection.threadId);
-});
+connection.connect();
+//     if(err) {
+//         console.error('error connecting: '+ err.stack);
+//         return;
+//     }
+//     console.log('connected as id' + connection.threadId);
+// });
 
 module.exports = connection;
