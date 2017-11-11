@@ -15,7 +15,6 @@ nav {
 }
 .aboveForm {
   padding: 22px;
-  background-image: url("public/img/carboon.jpg");  
 }
 blockquote {
   margin: 20px 0;
@@ -28,7 +27,6 @@ blockquote {
 }
 
 .footer{
-    /* background-image: url("/img/carboon.jpg");   */
   margin-bottom: 110;
   padding-top: 22px;
   background-color: #3d88ec;
