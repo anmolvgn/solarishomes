@@ -67,10 +67,9 @@ h1 {
   /* float: none; */
 }
 .loginForm {
-  padding-top: 44;  
-  width: 44%;
+  padding-top: 11;  
   margin: 0 auto;
-  /* float: none; */
+  float: none;
 }
 .registerForm {
   width: 55%;
