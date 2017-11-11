@@ -3,15 +3,21 @@ var Router = require('router');
 var bodyParser = require('body-parser');
 var request = require('request');
 
+
 var router = Router();
     // home route
     router.get('/', function (req, res) {
         pageLoad();
         res.render('home',data);
     });
+    router.get('/about', function (req, res) {
+        res.render('about');
+    });
     router.get('/products',function(req,res){
         console.log('products get request')
-        db.Products.findAll({}).then(function(items){
+        db.Products.findAll({raw:true}).then(function(items){
+            var products = JSON.stringify(items[0]);
+            console.log(products);
             var productList = {
                 products: items
             }

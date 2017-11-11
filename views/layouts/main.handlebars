@@ -3,31 +3,30 @@
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      {{!-- jquery --}}
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       {{!-- Charts --}}
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js"></script>       {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/esm/popper-utils.min.js"></script> --}}
-      {{!-- handlebars.js --}}
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script><!-- Compiled and minified CSS -->
-    <!-- Compiled and minified CSS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js"></script>
+      {{!-- jquery --}}
+       
+      <!-- Compiled and minified CSS -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
       <!-- Compiled and minified JavaScript -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-                <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>   
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
+      <!-- Compiled and minified JavaScript -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
       <link rel="stylesheet" type="text/css" href="/css/styles.css">
       <script type="text/javascript" src="/js/main.js"></script>
-      <title>Go Solar</title>
+      <title>GoSolar</title>
   </head>
-
-<body>
-
     {{!-- NAVBAR --}}
-           <nav>
+  <header>
+  
+          <nav>
               <div class="nav-wrapper">
-                <a href="/" class="brand-logo">Go Solar</a>
+                <a href="/" class="brand-logo">GoSolar</a>
                 <a href="/" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                   <li><a href="#">About</a></li>
@@ -41,11 +40,19 @@
                 </ul>
               </div>
           </nav>
-  
-{{!-- END carousel --}}
- <div class="quote">
 
- </div>
+    <div class="row container-fluid banner">
+      <div class="col-lg-12">
+        <div class="homebanner">
+            {{!-- <img src="/img/homebanner.jpg" alt="First slide"> --}}
+        </div>
+      </div>
+    </div>
+</header>         
+                 
+<body>              
+   
+{{!-- END carousel --}}
 <div>    
     <div class="container">
         {{{body}}}
@@ -56,28 +63,42 @@
    <footer class="footer">
           <div class="container">
             <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">Go Solar</h5>
-                <p class="grey-text text-lighten-1">1111 Sustainable Way.</br> 
-                Brightfuture, CO</br>
-                1-800-444-4444</br>
-                sunny@solarcompany.org</p>
-              </div>
-              <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
-                <ul>
-                  <li><a class="grey-text text-lighten-3" href="http://www.cleanenergyauthority.com/solar-installers/">Solar Installers </a></li>
-                  <li><a class="grey-text text-lighten-3" href="https://www.tesla.com/powerwall">Home Energy Storage</a></li>
-                  <li><a class="grey-text text-lighten-3" href="https://www.nrel.gov/solar/">Solar Research @ NREL</a></li>
-                </ul>
-              </div>
+                <div class="col s12 m6 l4">
+                  <h5 class="white-text">Go Solar</h5>
+                  <p class="grey-text text-lighten-3">1111 Sustainable Way.</br> 
+                  Brightfuture, CO</br>
+                  1-800-444-4444</br>
+                  sunny@solarcompany.org</p>
+                </div>
+                    <div class="col s12 m6 l4">
+                      <h5 class="white-text text-center">Find Us Follow Us</h5>
+                      <ul class="text-center">
+                        <img src="/img/facebook.png">
+                        <img src="/img/gitHub.png">
+                        <img src="/img/tweet.png">
+                      </ul>
+                    </div>
+                        <div class="col s12 m6 l4 text-right">
+                          <h5 class="white-text">Resources</h5>
+                          <ul>
+                            <li><a class="grey-text text-lighten-3" href="http://www.cleanenergyauthority.com/solar-installers/">Solar Installers </a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://www.tesla.com/powerwall">Home Energy Storage</a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://www.nrel.gov/solar/">Solar Research @ NREL</a></li>
+                          </ul>
+                        </div>
+                </div>
             </div>
-          </div>
+         </div>
+      
           <div class="footer-copyright">
             <div class="container">
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                <div class="col-md text-md-center">
+                  <small>&copy; 2017 Denver Coding Boot Camp</small>
+                </div>
             </div>
           </div>
+        </div>  
         </footer>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/esm/popper-utils.min.js"></script>
 </body>
 </html>

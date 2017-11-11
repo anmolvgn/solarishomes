@@ -1,33 +1,50 @@
 
 
 <div class="row">
-    <div class="productsTable">
-        <table class="table">
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th>Description</th>
-                <th>Price</th>
-              </tr>
-            </thead>
+    <div class="productsTable"> 
+      
+      <table class="table">
+          <thead class="tableHeader">
+                <tr>
+                  <th class="col s12 m4 l4"><h3>Product Desc.</h3></th>
+                  <th class="col s12 m4 l5"><h3>Description</h3></th>
+                  <th class="col s12 m4 l1"><h3>Price</h3></th>
+                  <th class="col s12 m4 l1"><h3>Qty.</h3>
+                  </th>
+                </tr>
+          </thead>
+              <br>
+        {{#each products}}
             <tbody>
               <tr>
-                <td>Monocrystalline Solar Panel</td>
-                <td>Made from the highest quality...</td>
-                <td>$342</td>
-              </tr>
-              <tr>
-                <td>Polycrystalline Solar Panel</td>
-                <td>High temperature ratings are slightly lower than those for monocrystalline panels;</td>
-                <td>$35</td>
-              </tr>
-              <tr>
-                <td>Thin film Solar Panel</td>
-                <td>These panels are lightweight, they are generally immune to problems from shading or obstructi...</td>
-                <td>$345</td>
+                <td class="col s12 m4 l4"><strong>{{this.productName}}</strong></td>
+                <td class="col s12 m4 l5">{{this.productDescription}}</td>
+                <td class="col s12 m4 l1">{{formatNumber this.cost style="currency" currency="USD"}}</td>
+                <td class="col s12 m4 l1"><input id="{{this.id}}" type="number"></td>
+                <td class="col s12 m4 l1"><button class="btn-sm btn-info addToCart" id="{{this.id}}">Add to Cart</button></td>
               </tr>
             </tbody>
-        </table>
+        {{/each}}
+      </table>
+      <div class="row">
+        <table id="totals">
+        <tbody>
+          <tr class="col-sm-12 center">
+              <td class="right" id="totalDue"><span class="text-muted tot">Total:    </span><input type="total"></td>
+              <td></td>
+          </tr>
+        </tbody>
+    </table>
+      </div>
+      <div class="col-sm-12 center">
+        <p>
+          <a href="#" class="btn btn-default right btn-lg">
+           <span class="shopping_cart"></span> Proceed to Checkout!
+          </a>
+        </p> 
+      </div>
+      
+      
     </div>
 </div>
 {{!-- <div class = "home1-row">

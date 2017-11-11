@@ -4,6 +4,8 @@ var app = express();
 var db = require('./models');
 var httpResponse = require('express-http-response');
 var passport = require('passport');
+var Handlebars     = require('handlebars');
+var HandlebarsIntl = require('handlebars-intl');
 var cookieParser = require('cookie-parser');
 var session = require('cookie-session');
 var bodyParser = require('body-parser');
@@ -13,8 +15,11 @@ var request = require('request');
 var flash = require('connect-flash');
 const expressValidator = require('express-validator');
 
+
 // console.log(require);
 var port = process.env.PORT || 8000;
+
+HandlebarsIntl.registerWith(Handlebars);
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');

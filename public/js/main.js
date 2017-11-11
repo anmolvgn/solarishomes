@@ -1,8 +1,9 @@
 
 $(function(){  
 
-    $(".button-collapse").sideNav();
 
+    $(".button-collapse").sideNav();
+    
     $("#login").on('click',function(event){
         var creds = document.getElementById('user').val().trim();
         console.log(creds)
@@ -26,6 +27,14 @@ $(function(){
           })
       }) 
     
+// cart 
+$(document).on('click','.addToCart',function(event){
+   event.preventDefault()
+    var something = this.val;
+   console.log(something);
+ }) 
+
+
 
       //AVG SOLAR POTENTIAL BY MONTH
 var myNodelist = document.getElementsByName("node");
