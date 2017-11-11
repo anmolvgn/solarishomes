@@ -1,46 +1,28 @@
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
-     
+      <link rel="icon" type="image/jpg" href="img/carboon.jpg" />
       {{!-- jquery --}}
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       {{!-- Charts --}}
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>      
-       {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/esm/popper-utils.min.js"></script> --}}
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js"></script>       {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/esm/popper-utils.min.js"></script> --}}
       {{!-- handlebars.js --}}
       <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script><!-- Compiled and minified CSS -->
+    <!-- Compiled and minified CSS -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
       <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+                <!-- Compiled and minified JavaScript -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
       <link rel="stylesheet" type="text/css" href="/css/styles.css">
       <script type="text/javascript" src="/js/main.js"></script>
-=======
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/esm/popper-utils.min.js"></script> --}}
-    {{!-- handlebars.js --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-    {{!-- jquery --}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <!-- Compiled and minified JavaScript -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="/public/assets/css/styles.css">
-    <script type="text/javascript" href="/public/assets/js/main.js"></script>
->>>>>>> d9e32d6c1ee11e80696246fd1e09471daf171f0a
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     <title>Sun Fueled</title>
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">    
@@ -65,19 +47,40 @@
     <div class="container">    
 =======
       <title>Sun Fueled</title>
+=======
+      <title>Go Solar</title>
+>>>>>>> 9412178cd7e9bec339800e8d35fd770f7c3b12d1
   </head>
 
 <body>
+
     {{!-- NAVBAR --}}
-    <nav>
-        <div class="nav-wrapper">
-                <a href="/" class="brand-logo">Sun Harvesting Inc.</a>
+    {{!-- <nav class="navbar">
+        <div class="nav-wrapper"> --}}
+           <nav>
+              <div class="nav-wrapper">
+                <a href="/" class="brand-logo">Go Solar</a>
+                <a href="/" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                  <li><a href="#">About</a></li>
+                  <li><a href="/products">Products</a></li>
+                  <li><a href="/loginPage">Login</a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                  <li><a href="/about">About</a></li>
+                  <li><a href="/products">Products</a></li>
+                  <li><a href="/loginPage">Login</a></li>
+                </ul>
+              </div>
+          </nav>
+                {{!-- <a href="/" class="brand-logo">Go Solar</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="/about">About</a></li>
                 <li><a href="/products">Products</a></li>
                 <li><a href="/loginPage">Login</a></li>
                 </ul>
         </div>
+<<<<<<< HEAD
       </nav>
 <div class="container">    
 >>>>>>> cbcc2fd132f398eb63540bee0cd954802ba68201
@@ -133,35 +136,52 @@
 <br>
 <br>
 
+=======
+      </nav> --}}
+  
+          {{!-- <div class="item active">
+              <img src="/img/carboon.jpg" alt="sol">
+          </div> --}}
+  
+>>>>>>> 9412178cd7e9bec339800e8d35fd770f7c3b12d1
 {{!-- END carousel --}}
-   {{!-- --- --}}
-    <div>
+ <div class="quote">
+
+ </div>
+<div>    
+    <div class="container">
         {{{body}}}
-   </div>
-
+    </div>
 </div>
-<div class="push"></div>
 
+<div class="push"></div>
    <footer class="footer">
 >>>>>>> cbcc2fd132f398eb63540bee0cd954802ba68201
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                <h5 class="white-text">Go Solar</h5>
+                <p class="grey-text text-lighten-1">1111 Sustainable Way.</br> 
+                Brightfuture, CO</br>
+                1-800-444-4444</br>
+                sunny@solarcompany.org</p>
               </div>
               <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Links</h5>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                  <li><a class="grey-text text-lighten-3" href="http://www.cleanenergyauthority.com/solar-installers/">Solar Installers </a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://www.tesla.com/powerwall">Home Energy Storage</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://www.nrel.gov/solar/">Solar Research @ NREL</a></li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="footer-copyright">
             <div class="container">
+<<<<<<< HEAD
             © 2017 Copyright Text
+=======
+>>>>>>> 9412178cd7e9bec339800e8d35fd770f7c3b12d1
             <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
             </div>
           </div>

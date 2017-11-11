@@ -5,7 +5,7 @@ var db = require('./models');
 var httpResponse = require('express-http-response');
 var passport = require('passport');
 var cookieParser = require('cookie-parser');
-var session = require('express-session');
+var session = require('cookie-session');
 var bodyParser = require('body-parser');
 var users = require('./controllers/users');
 var routes = require('./controllers/api-routes');
@@ -14,7 +14,7 @@ var flash = require('connect-flash');
 const expressValidator = require('express-validator');
 
 // console.log(require);
-var port = process.env.PORT || 4444;
+var port = process.env.PORT || 8000;
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');

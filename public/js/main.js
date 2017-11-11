@@ -1,28 +1,32 @@
 
 $(function(){  
-    // $("#login").on('click',function(event){
-    //     var creds = document.getElementById('user').val().trim();
-    //     console.log(creds)
-    //      event.preventDefault()
-    //  $.ajax({
-    //        url: '/login',
-    //      method: 'POST'
-    //      }).done(function(ans){
-    //        console.log('going to authenticate...');
-    //                alert('what is going on here');
-    //     })
-    //  });
 
-    //  $('#createUser').on('click',function(event){
-    //      console.log(req.body);
-    //     event.preventDefault()
-    //       $.ajax({
-    //         url: '/userSetup',
-    //          method: 'POST'
-    //       }).done(function(ans){
-    //         console.log('routing to new user form');
-    //       })
-    //   }) 
+    $(".button-collapse").sideNav();
+
+    $("#login").on('click',function(event){
+        var creds = document.getElementById('user').val().trim();
+        console.log(creds)
+         event.preventDefault()
+     $.ajax({
+           url: '/login',
+         method: 'POST'
+         }).done(function(ans){
+           console.log('going to authenticate...');
+        })
+     });
+
+     $('#createUser').on('click',function(event){
+         console.log(req.body);
+        event.preventDefault()
+          $.ajax({
+            url: '/userSetup',
+             method: 'POST'
+          }).done(function(ans){
+            console.log('routing to new user form');
+          })
+      }) 
+    
+
       //AVG SOLAR POTENTIAL BY MONTH
 var myNodelist = document.getElementsByName("node");
 var solarChartData = [];
@@ -34,7 +38,7 @@ myNodelist.forEach(function(item){
 })
 solarChartData.splice(0,1,);
 solarChartData.splice(12,2);
-//console.log(solarChartData);  
+console.log(solarChartData);  
 //end avg solar
 //AVE COST DATA BY MONTH
 var myCostNodelist = document.getElementsByName("costNode");
@@ -49,12 +53,24 @@ costChartData.splice(0,2);
 costChartData.splice(12,3);
 // console.log(costChartData);
 costSavings = [];
+var totalSaved = 0;
 for(i = 0; i< solarChartData.length; i++) {
     savings = parseInt(solarChartData[i]) * (parseInt(costChartData[i])/100);
     console.log(savings);
     costSavings.push(savings);
+    totalSaved += savings;
 }
-// console.log(costSavings);
+console.log(totalSaved);
+totalSaved = Math.round(totalSaved);
+var currency = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0,
+  });
+  
+  totalSaved = currency.format(totalSaved);
+  console.log(totalSaved);
+$('#totalSaved').html(totalSaved);
 
 var sunData = $("#KwhAc");
 console.log(sunData);    
@@ -66,8 +82,8 @@ var acChart = new Chart(sunChart, {
         datasets: [{
             label: 'Kwh AC Output',
             data: solarChartData,
-            backgroundColor: ['rgba(255, 99, 132, 0.2)'],
-            borderColor: ['rgba(255,44,33,1)'],
+            // backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+            // borderColor: ['rgba(255,44,33,1)'],
             borderWidth: 1
         }]
     },
@@ -89,6 +105,7 @@ var acChart = new Chart(sunChart, {
 
 
 var costChart = $("#costSavings");
+console.log(costChart);
 var myChart = new Chart(costChart, {
     type: 'bar',
     data: {
@@ -96,8 +113,8 @@ var myChart = new Chart(costChart, {
         datasets: [{
             label: 'Total Cost Savings',
             data: costSavings,
-            backgroundColor: ['rgba(255, 99, 132, 0.2)'],
-            borderColor: ['rgba(255,44,33,1)'],
+            // backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+            // borderColor: ['rgba(255,44,33,1)'],
             borderWidth: 1
         }]
     },
@@ -110,7 +127,10 @@ var myChart = new Chart(costChart, {
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero:true
+                        beginAtZero:true,
+                        callback: function(value, index, values) {
+                            return '$' + Math.round(value,0);
+                        }
                     }
                 }]
             }
