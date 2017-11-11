@@ -14,7 +14,7 @@ var flash = require('connect-flash');
 const expressValidator = require('express-validator');
 
 // console.log(require);
-var port = process.env.JAWSDB_URL || 8000;
+var port = process.env.PORT || 8000;
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
